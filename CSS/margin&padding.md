@@ -10,7 +10,7 @@ padding-bottom: 30px;
 padding-lefr: 40px;
 }
 ```
-위와 같이 margin에도 동일한 접미사를 붙여 개별 정의할 수 있습니다.<br><br>
+위와 같이 margin에도 동일한 접미사를 붙여  개별 정의할 수 있습니다.<br><br>
 
 ## 2. 여러 값을 한 번에 정의하기
 ```
