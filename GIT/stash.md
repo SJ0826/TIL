@@ -37,13 +37,13 @@ p라는 옵션을 이용하면 더 자세한 내용을 확인할 수 있습니�
 stash stack의 가장 위에 있는 부분을 working directory에 가져옵니다.<br>
 목록은 그대로 유지됩니다.<br><br>
 
-`git stash apply (stash 아이디)`
+`git stash apply (stash 아이디)`<br>
 특정한 stash를 적용하고 싶다면 stash 아이디를 지정하여 명령어를 입력해 주면 됩니다.<br><br>
 
-`git stash branch (브랜치 이름)`
+`git stash branch (브랜치 이름)`<br>
 stash를 적용하면서 새로운 브랜치를 만들게 됩니다.
 
-`git stash pop`
+`git stash pop`<br>
 stash stack의 가장 위에 있는 부분을 working directory에 가져옵니다.<br>
 가지고 나온 stash는 목록에서 삭제됩니다.<br><br>
 
