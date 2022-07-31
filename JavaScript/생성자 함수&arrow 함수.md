@@ -47,6 +47,27 @@ globalThis.a = 0; //전역변수
 결과<br>
 `0`
 
+### 생성자 함수를 이용하여 새로운 객체를 만들어내는 방법
+
+매개변수를 인자로 하여, 인자로 넣어준 매개변수를 객체가 프로퍼티로 가지게 합니다.<br>
+```
+function Person(name, age) { //name과 age를 인자로 함. 인자로 넣어준 name과 age를 객체가 프로퍼티로 가지게 함.
+    console.log(this);
+    this.name = name;
+    this.age = age;
+}
+
+
+const p = new Person('Mark', 37);
+
+console.log(p, p.name, p.age); 
+```
+결과<br>
+```
+Person {} 
+Person { name: 'Mark', age: 37 } Mark 37`
+```
+
 ## arrow 함수
 arrow함수는 함수 표현식보다 단순하고 간결한 문법으로 함수를 만들 수 있는 방법입니다.<br><br>
 
@@ -59,7 +80,10 @@ const hello3 = (name, age) => {
 
 * arrow함수는 항상 익명함수 방식으로 선언합니다.<br><br>
 
-* 매개변수가 하나일 때, 괄호는 생략 가능합니다.<br><br>
+* 매개변수가 하나일 때, 괄호는 생략 가능합니다.
+<br><br>
+
+* arrow함수는 this를 사용하지 않기 때문에 생성자함수를 생성할 수 없습니다.<br><br>
 
 ### arrow함수의 리턴
 ```
