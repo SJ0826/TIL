@@ -29,15 +29,44 @@ p.hello();
 * 굳이 this라는 자기참조변수를 사용하지 않고 prototype으로 변수 p에 hello라는 함수를 할당했다.
 
 ```
-console.log(p instanceof Person); // P라는 객체가 Person에서 나온 인스턴스인가?
-console.log(p instanceof Object); // p라는 객체가 Object에서 나온 인스턴스인가?
+function Person() {} //Person함수 생성
+
+Person.prototype.hello = function() { //Person의 프로토타입으로 hello 함수 생성
+    console.log('hello');
+}
+
+function Korean(region) { //Korean 함수 생성
+    this.region = region;
+    this.where = function() {
+        console.log('where', this.region);
+    };
+}
+
+Korean.prototype = Person.prototype; // 프로토타입을 이용해 부모의 프로퍼티를 자식의 프로퍼티에 할당
+
+const k = new Korean('Seoul'); // 변수 k에 객체 할당
+
+k.hello();
+k.where();
 ```
 결과<br>
+`hello1`<br>
+`where Seoul`<br>
+
+### 프로토타입 체인
+프로토타입을 이용해 서로 이어져 있는 집합을 **프로토타입 체인**이라고 합니다.<br><br>
+위의 코드에 다음과 같은 코드를 이어서 작성합니다.<br>
+```
+console.log(k instanceof Korean);
+console.log(k instanceof Person);
+console.log(k instanceof Object);
+```
+<결과><br>
+`true`<br>
 `true`<br>
 `true`<br><br>
 
-* 객체 p가 Person과 Object에서 나온 인스턴스임을 확인할 수 있다.
-
+* Korean이 Person을 상속하고, Person이 Object를 상속하므로 true값이 나왔다.<br>
 ## 느낀 점
 자바스크립트 공부하면서 제일 난관에 봉착했다.<br>
 뭔가 알듯 말듯 헷갈리는 개념이다.<br>
