@@ -85,10 +85,6 @@ const hello3 = (name, age) => {
 
 * arrow함수는 this를 사용하지 않기 때문에 생성자함수를 생성할 수 없습니다.<br><br>
 
-### arrow함수의 리턴
-```
-const hello5 = name => 'hello5 ${name}';
-```
 
 ## 출처
 * 패스트캠퍼스
