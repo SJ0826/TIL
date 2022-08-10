@@ -1,4 +1,6 @@
-# spread 연산자
+# spread & rest
+
+## spread 연산자
 
 `spread`연산자는 ES6문법에서 처음으로 등장했습니다.<br><br>
 
@@ -29,11 +31,32 @@ consol.log(second);
 { one: 1, two: 2}
 ```
 
-## 장점
+### 장점
 
 - `spread`연산자는 기존객체를 변경시키지 않고 복사해옵니다.
 
 - 코드의 재사용성이 높아집니다.
+
+## rest 연산자
+
+`rest`연산자도 마찬가지로 `...`키워드를 사용합니다.<br><br>
+
+차이점은 '나머지'라는 뜻을 가진것처럼 **정해준 값 이외의 값을 복사해온다**는 것입니다.<br><br>
+
+```
+const numbers = [0, 1, 2, 3, 4, 5, 6];
+
+const [one, ...rest] = numbers; //첫번째 값을 제외한 값을 rest로 가져온다.
+console.log(one);
+console.log(rest);
+```
+
+<결과><br>
+
+```
+0
+[ 1, 2, 3, 4, 5, 6 ]
+```
 
 ## 출처
 
