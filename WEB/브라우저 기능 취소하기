@@ -1,0 +1,33 @@
+# 브라우저 기능 취소하기
+
+브라우저에 있는 자체적인 기능 취소할때는 `preventDefalt()`라는 키워드를 사용한다.
+
+…
+const checkbox = document.querySelector(input);
+checkbox.addEventListener(‘click’, event => {
+consol.log(‘checked’);
+event.preventDefault(); // 체크박스에 체크마크가 발생하지 않음.
+});
+…
+
+## 주의할 점
+
+빠르게 동작하는 이벤트에서는 브라우저가 사용자보다 코드처리를 더 빨리 하기 때문에 브라우저의 기본값을 취소할 수 없다.
+… 
+document.addEventListner(‘wheel’, event => {
+consol.log(‘Scrolling’);
+event.preventDefault; //Erorr 발생!
+});
+…
+
+그럼에도 불구하고 브라우저 자체 기능을 취소하고 싶다면 `option`값을 추가하면 된다.<br>
+`passive`는 `boolean`이므로 false로 지정하면 EventListener의 수동값이 해제 되므로 preventDefault를 호출할 수 있다.
+
+...
+document.addEventListner(‘wheel’, event => {
+consol.log(‘Scrolling’);
+event.preventDefault;
+}, passive: false}); // Event Listener가 active되어 PreventDefault 호출 가능.
+...
+
+하지만, 기본적으로 **`passive`가 `true`로 설정된 event는 false로 설정하지 않는 것이 좋다.**
