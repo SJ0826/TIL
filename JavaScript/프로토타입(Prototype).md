@@ -8,6 +8,10 @@
 
 Javascript에서는 객체를 상속하기 위하여 프로토타입이라는 방식을 사용합니다.<br><br>
 
+- 생성자 함수에 기본으로 세팅되는 프로퍼티`(F.prototype)`는 `[[Prototype]]`과 다릅니다. `F.prototype`은 `new F()`를 호출할 때 만들어지는 새로운 객체의 `[[Prototype]]`을 설정합니다.
+
+- `F.prototype`의 값은 객체나 `null`만 가능합니다. 다른 값은 무시됩니다.
+
 ```
 function Person(name, age) {
     this.name = name;
