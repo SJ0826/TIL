@@ -182,6 +182,45 @@ Promise.all([프로미스 객체들]);
 ```
 
 promise.all에 전달되는 프라미스 중 하나라도 거부되면, Promise.all이 반환하는 프라미스는 에러와 함께 바로 거부됩니다.
+
+### promise.allSettled
+
+Promise.allSettled는 모든 프라미스가 처리될 때까지 기다립니다.<br>
+반환되는 배열은 다음과 같은 요소를 갖습니다.
+
+- 응답이 성공할 경우 – {status:"fulfilled", value:result}
+- 에러가 발생한 경우 – {status:"rejected", reason:error}
+
+```
+let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/Violet-Bora-Lee',
+  'https://no-such-url'
+];
+
+Promise.allSettled(urls.map(url => fetch(url)))
+  .then(results => { // (*)
+    results.forEach((result, num) => {
+      if (result.status == "fulfilled") {
+        alert(`${urls[num]}: ${result.value.status}`);
+      }
+      if (result.status == "rejected") {
+        alert(`${urls[num]}: ${result.reason}`);
+      }
+    });
+  });
+```
+
+<결과><br>
+
+```
+[
+  {status: 'fulfilled', value: ...응답...},
+  {status: 'fulfilled', value: ...응답...},
+  {status: 'rejected', reason: ...에러 객체...}
+]
+```
+
 <br>
 
 ### promise.race
