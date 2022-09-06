@@ -11,20 +11,23 @@
 ## promise 처리 흐름
 
 ### 1. 프로미스가 생성자를 통해서 생성되면 pending(대기)상태가 됩니다.
+
 ```
 new Promise((resolve, reject) => {}); //pending
 ```
 
 ### 2-1. pending상태로 돌입한 후 excutor 함수 인자 중 하나인 resolve 함수를 실행하면, fulfilled(이행)상태가 됩니다.
+
 ```
 new Promise((resolve, reject) => {
-    // pending상태 
+    // pending상태
     // ... 비동기적인 상황이 되는 처리가 벌어짐.
     resolve(); // fulfilled
 })
 ```
 
 ### 2-2. excutor 함수 인자 중 하나인 reject 함수를 실행하면, rejected (거부) 상태가 됩니다.
+
 ```
 new Promise((resolve, reject) => {
     reject(); //rejected
@@ -32,18 +35,22 @@ new Promise((resolve, reject) => {
 ```
 
 ### 3-1. 프로미스 객체가 fulfilled 되는 시점에 .then 안에 설정한 callback 함수가 실행됩니다.
+
 ```
 p.then(/*callback*/);
 ```
+
 > p라는 프로미스 객체의 callback이 실행됨.
 
 excutor의 resolve함수를 실행할 때 인자를 넣어 실행하면, then의 callback 함수의 인자로 받을 수 있습니다.
+
 ```
 resolve('hello');
 then((message) => {...})
 ```
 
 ### 3-2. 마찬가지로 프로미스 객체가 rejected되는 시점에 .catch안에 설정한 callback함수가 실행됩니다.
+
 ```
 catch(() => {
     console.log('/*callback*/');
@@ -51,26 +58,31 @@ catch(() => {
 ```
 
 executor의 reject 함수를 실행할 때 인자를 넣어 실행하면, catch의 callback함수의 인자로 받을 수 있습니다.
+
 ```
 reject('error');
 catch((reason) => {...})
 ```
 
 보통 reject 함수를 실행하며 rejected 되는 이유를 넘기는데, 표준 내장 객체인 Error의 생성자를 이용하여 Error 객체를 만들 수 있습니다.
+
 ```
 reject(new Error('bad'));
 catch((error) => {...});
 ```
 
 ### 4. fulfilled 되거나 rejected 된 후에 최종적으로 실행할 것이 있다면, .finally()를 설정하고, 함수를 인자로 넣습니다.
+
 ```
 finally(() => {...});
 ```
 
 ## callback vs promise
+
 비동기 작업을 하는 방법은 주로 callback과 promise가 있습니다.<br><br>
 
 ### callback
+
 보통 비동기 작업을 할 때, callback함수를 인자로 넣어 로직이 끝나면 callback함수를 호출합니다.<br><br>
 이런 경우 함수가 아래로 진행되지 않고, callback 함수 안으로 진행됩니다.<br>
 
@@ -94,8 +106,10 @@ c(() => {
 }); //callback hell
 ```
 
-### promise
+### promise 체이닝
+
 promise방식에서는 then 함수에서 다시 프로미스 객체를 리턴하는 방법을 통해 체이닝하면, 비동기 적업을 순차적으로 아래로 표현할 수 있습니다.<br><br>
+
 ```
 function p() {
     return new Promise((resolve, reject) => {
@@ -116,9 +130,11 @@ p().then(() => {
 ```
 
 ## value가 프로미스 객체인지 알 수 없는 경우
+
 연결된 then 메서드를 실행합니다.<br><br>
 value가 프로미스 객체면, resolve 된 then 메서드를 실행합니다.<br><br>
 value가 프로미스 객체가 아니면, value를 인자로 보내면서 then메서드를 실행합니다.<br>
+
 ```
 Promise.resolve(/* value */); //프로미스라는 전역객체의 resolve함수를 실행하면서 동시에 promise를 만들어낸다.
 
@@ -128,17 +144,19 @@ Promise.resolve(new Promise((resolve, reject) => { // 비동기 프로미스 객
     }, 1000);
 })).then((data) => {
     console.log(
-        '프로미스 객체인 경우, resolve 된 결과를 받아 then이 실행됩니다.', 
+        '프로미스 객체인 경우, resolve 된 결과를 받아 then이 실행됩니다.',
         data,
     );
-}); 
+});
 
 Promise.resolve('bar').then(data => {
     console.log('then 메서드가 없는 경우, fulfilled됩니다.', data);
 });
 
 ```
+
 promise.reject를 사용하면, catch로 연결된 rejected 상태로 변경됩니다.
+
 ```
 Promise.reject(/* */);
 
@@ -148,17 +166,22 @@ Promise.reject(new Error('reason'))
     console.log(error);
 });
 ```
+
 ## promise 객체 배열로 생성하기
 
 ### promise.all
+
 프로미스 객체 여러개를 생성하여,<br><br>
 배열로 만들어 인자로 넣고 Promise.all을 실행하면,<br><br>
 배열의 모든 프로미스 객체들이 fulfilled 되었을 때, then의 함수가 실행됩니다.<br><br>
 then의 함수의 인자로 프로미스 객체들의 resolve 인자값을 배열로 돌려줍니다.
+
 ```
 Promise.all([프로미스 객체들]);
 })
 ```
+
+promise.all에 전달되는 프라미스 중 하나라도 거부되면, Promise.all이 반환하는 프라미스는 에러와 함께 바로 거부됩니다.
 <br>
 
 ### promise.race
@@ -167,11 +190,13 @@ Promise.all([프로미스 객체들]);
 배열로 만들어 인자로 넣고 Promise.race를 실행하면,<br><br>
 배열의 모든 프로미스 객체들 중 가장 먼저 fulfiiled된 것으로, then의 함수가 실행됩니다.<br><br>
 then의 함수의 인자로 가장 먼저 fulfilled 된 프로미스 개체의 resolve 인자값을 돌려줍니다.<br>
+
 ```
-Promise.race([프로미스 객체들]); 
+Promise.race([프로미스 객체들]);
 ```
+
 ## 출처
 
-* 패스트캠퍼스 강의<br><br>
+- 패스트캠퍼스 강의<br><br>
 
-* [캡틴판교](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/)
+- [캡틴판교](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/)
