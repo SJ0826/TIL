@@ -25,6 +25,8 @@ class LikeButton extends Component {
     </button>;
   }
 }
+
+export defalut LikeButton;
 ```
 
 - state: 컴포넌트에 들어있는 데이터
@@ -46,6 +48,30 @@ class LikeButton extends Component {
 - 위와 같은 과정은 리액트에서 직접 데이터가 변경이 될 때 마다 어플리케이션 전체를 다시 렌더링 한다. 개발자가 다른 요소를 하나하나 일일히 손댈 필요 없이 리액트 자체에서 업데이트를 해주기 때문에 효율성을 추구할 수 있다.
 
 - 리액트는 기본적으로 `60fps`를 보장하기 때문에 성능이 보장된다.
+
+## 컴포넌트를 만드는 방법
+
+1. 클래스
+
+   - 컴포넌트를 상속해서 만든다.
+   - 컴포넌트가 주기적으로 업데이트 될 때 사용한다.
+   - 관련된 데이터, 함수가 묶어져 있다.
+   - state가 들어있어 컴포넌트가 업데이트 되면 Render함수가 업데이트된다.
+
+   ```
+   class LikeButton extends Component {...}
+   ```
+
+2. 함수
+   - 업데이트가 없고 정적인 경우에 사용한다.
+   - 한가지의 기능을 수행하는 단위, state나 lifecycle method가 없다.
+     React 16.8 버전부터는 React Hook이 도입되어 state, lifecycle method를 사용할 수 있음.
+
+```
+function App() {
+  return <h1>Hello</h1>
+}
+```
 
 ## 출처
 
