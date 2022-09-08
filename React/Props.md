@@ -38,3 +38,6 @@ class LikeButton extends Component {
 ```
 
 전달된 인자들이 오브젝트로 묶어져서 `LikeButton`컴포넌트 안에서 `this.props`로 할당된다.
+
+- 드림코딩
+- https://goddaehee.tistory.com/300
