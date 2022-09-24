@@ -5,6 +5,7 @@
 컨텍스트를 사용하기 위해서 `createContext`함수를 호출하면 객체가 반환된다.
 
 ```
+// 컨텍스트 함수 호출
 const UserContext = createContext('unknown'); 
 ```
 
