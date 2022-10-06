@@ -1,6 +1,9 @@
 # 컨텍스트
 
-자신은 사용하지 않으면서 밑으로 내려줘야하는 코드가 있을 때 컨텍스트를 사용한다.
+자신은 사용하지 않으면서 밑으로 내려줘야하는 코드가 있을 때,
+
+다른 멀리 있는 컴포넌트에 있는 값을 바로 사용할 경우 사용한다.
+
 
 컨텍스트를 사용하기 위해서 `createContext`함수를 호출하면 객체가 반환된다.
 
@@ -11,11 +14,50 @@ const UserContext = createContext('unknown');
 
 `createContext`를 호출할 때 초기값을 설정하는데 컴포넌트가 값을 검색할때 해당 값이 없으면 초기값이 사용된다.
 
+## 예제
+```
+import React, { createContext, useContext, useState } from "react";
 
-객체 안에는 `Provider`와 `Consumer`컴포넌트가 들어있다.
+const MyContext = createContext('defalutValue');
 
-`Provider`에서 `value`에 값을 넣어주면 `Consumer`에서 값을 받아서 처리한다.
+function Child() {
+  const text = useContext(MyContext);
+  return <div>안녕하세요? {text} </div>
+}
 
-`Provider`컴포넌트의 값이 변경되면 하위의 `Consumer`컴포넌트는 다시 랜더링 된다.
+function Parent() {
+  return <Child />
+}
 
-중간에 있는 컴포넌트가 렌더링 되지 않아도 `Consumer`컴포넌트는 렌더링된다.
+function GrandParent() {
+  return <Parent />
+}
+
+function ContextSample() {
+  const [value, setValue] = useState(true);
+  return (
+    <MyContext.Provider value = {value ? 'Good' : 'Bad'}>
+      <GrandParent />
+      <button onClick={() => setValue(!value)}>CLICK ME</button>
+    </MyContext.Provider>
+  )
+}
+
+export default ContextSample;
+```
+- `MyContext`에 `createContext`로 기본값이 `defalutValue`인 컨텍스트를 생성했다.
+- `Child` 컴포넌트의 `text`에 `MyContext`를 적용했다.
+- 메인 컴포넌트인 `ContextSample`에서 `text`를 가져다 쓸 `GrandParent`컴포넌트를 `MyContext`태그로 감싸 사용한다.
+- 기본값을 바꾸고 싶다면 `Provider` 컴포넌트를 사용해 `value`의 값을 설정한다.
+
+객체 안에는 `Provider` 컴포넌트가 들어있다.
+
+`Provider`에서 `value`에 값을 넣어주면 `Context`가 적용된 값이 바뀐다.
+
+`Provider`컴포넌트의 값이 변경되면 하위의 컴포넌트는 다시 랜더링 된다.
+
+중간에 있는 컴포넌트가 렌더링 되지 않아도 컴포넌트는 렌더링된다.
+
+## 출처
+* 패스트캠퍼스 for velopert
+    
