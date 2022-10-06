@@ -55,7 +55,7 @@ const capt = {} as Hero;
 // capt.name = 'capt';
 
 ```
-타입 단언을 사용하면 위 주석처리된 코드를 사용하지 않아도 에러가 아니 않는다.
+타입 단언을 사용하면 위 주석처리된 코드를 사용하지 않아도 에러가 나지 않는다.
 
 인터페이스의 속성 값을 사용하지 않아도 에러가 나지 않는 위험성을 가지고 있다.
 
@@ -73,11 +73,6 @@ const capt = {} as Hero;
 ```
 
 `deathList`가 `null` 이나 `undefined`면 평가를 멈추고 `undefined`를 반환한다.
-
-
-
-
-
 ## 출처
 
 - [캡틴 판교-타입스크립트 입문 강의](https://www.inflearn.com/course/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%9E%85%EB%AC%B8/dashboard)
