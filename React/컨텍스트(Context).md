@@ -4,17 +4,29 @@
 
 다른 멀리 있는 컴포넌트에 있는 값을 바로 사용할 경우 사용한다.
 
+컨텍스트를 사용하면 props로 일일이 데이터를 전달해주지 않아도 해당 데이터를 가지고 있는 상위 컴포넌트가 하위 컴포넌트에게 전달해 줄 수 있다.
 
 컨텍스트를 사용하기 위해서 `createContext`함수를 호출하면 객체가 반환된다.
 
 ```
 // 컨텍스트 함수 호출
-const UserContext = createContext('unknown'); 
+const UserContext = createContext('unknown');
+
+// 컨텍스트 함수 사용
+const ContextExample = useContext(UserContext)
 ```
 
 `createContext`를 호출할 때 초기값을 설정하는데 컴포넌트가 값을 검색할때 해당 값이 없으면 초기값이 사용된다.
 
+## 주의할 점
+
+context는 꼭 필요할 때만 사용한다.
+
+1. Context를 사용하면 컴포넌트를 재사용하기 어려워 질 수 있다.
+2. Prop drilling을 피하기 위한 목적이라면 Component Composition (컴포넌트 합성)을 먼저 고려하자.
+
 ## 예제
+
 ```
 import React, { createContext, useContext, useState } from "react";
 
@@ -25,7 +37,7 @@ function Child() {
   return <div>안녕하세요? {text} </div>
 }
 
-function Parent() {
+function Parent() { // 중간 컴포넌트인 Parent에 아무런 props도 전달되지 않았다.
   return <Child />
 }
 
@@ -45,6 +57,7 @@ function ContextSample() {
 
 export default ContextSample;
 ```
+
 - `MyContext`에 `createContext`로 기본값이 `defalutValue`인 컨텍스트를 생성했다.
 - `Child` 컴포넌트의 `text`에 `MyContext`를 적용했다.
 - 메인 컴포넌트인 `ContextSample`에서 `text`를 가져다 쓸 `GrandParent`컴포넌트를 `MyContext`태그로 감싸 사용한다.
@@ -59,5 +72,7 @@ export default ContextSample;
 중간에 있는 컴포넌트가 렌더링 되지 않아도 컴포넌트는 렌더링된다.
 
 ## 출처
-* 패스트캠퍼스 for velopert
-    
+
+- 패스트캠퍼스 for velopert
+
+* [별코딩-useContext + Context AP](https://www.youtube.com/watch?v=LwvXVEHS638)
