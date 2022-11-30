@@ -67,6 +67,42 @@ onSearchBand: async (inputValue) => {
 - `fetch`함수에 `await`를 걸어준다.
 - `await`로 가져온 데이터는 `.json()`을 호출해서 한번 더 `await`를 걸어준다.
 
+### 예외처리 하기 주의사항
+
+```
+export const getSearchData = async (value) => {
+  const url = `https://api.idiots.band/api/search?keyword=${value}`;
+  const postResponse = await fetch(url);
+  if (postResponse.ok) {
+    const data = await postResponse.json();
+    return data;
+  } else {
+    throw new Error(data);
+  }
+};
+```
+
+이 코드는 에러는 나지 않지만 성능이 떨어진다.
+
+- async 함수는 모두 Promise를 리턴한다.
+- `reponse.ok`인 경우도 Promise가 리턴된다.
+- 하지만 `throw new Error(data)`를 선언한다면 async 함수는 `Promise<Response> | Promise<void>`로 타입이 잡히게 된다.
+
+따라서 `reponse.ok`를 선언했다면 예외처리를 할 경우도 Promise를 반환하게 하는 것이 바람직하다.
+
+```
+// 바람직한 코드
+
+export const getSearchBand = async (value) => {
+  const url = `https://api.idiots.band/api/search?keyword=${value}`;
+  const response = await fetch(url);
+  if (response.ok) {
+    return response.json();
+  }
+  return Promise.reject(new Error('API 요청에 실패 했습니다.');
+};
+```
+
 ## 출처
 
 - [DaleSeo - 비동기 처리 3부 async/await](https://www.daleseo.com/js-async-async-await/)
