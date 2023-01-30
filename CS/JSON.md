@@ -1,5 +1,5 @@
 # JSON
-![JSON](https://nesoy.github.io/assets/posts/20170208/json.PNG)
+![JSON](https://nesoy.github.io/assets/posts/20170208/json.PNG)<br />
 서버에서 사용하는 언어와 프론트에서 사용하는 언어가 다른 경우가 대부분입니다. 서로 사용하는 언어가 달라도 데이터는 주고 받아야하기 때문에 하나의 포맷을 정합니다. 그 중 대표적인 데이터 포맷이 **JSON**입니다.
 
  ## 1. JSON이란?
