@@ -1,6 +1,6 @@
 # XML
 
-![—Pngtree—xml file document icon_4166301](https://user-images.githubusercontent.com/56298540/215452315-25d01e72-eaa3-414c-b74a-963fb54a930e.png)
+<center><img src="https://user-images.githubusercontent.com/56298540/215452315-25d01e72-eaa3-414c-b74a-963fb54a930e.png"  width="600" height="600"/></center>
 
 ## 01. XML이란?
 
