@@ -10,6 +10,8 @@
 
 자바스크립트로 연결리스트를 이용해 스택을 구현합니다.
 
+![연결리스트 코드 구현](<https://github.com/SJ0826/TIL/blob/main/CS/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(Linked%20List).md>)
+
 ```js
 import { LinkedList } from "./LinkedList.mjs";
 
@@ -30,6 +32,7 @@ class Stack {
     }
   }
 
+  // Top(head)에 있는 데이터를 참조만 하고 데이터를 제거하지는 않는다
   peek() {
     return this.list.getNodeAt(0);
   }
