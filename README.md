@@ -4,4 +4,4 @@
 
 배운 내용은 미루지 않고 바로바로 작성합니다.
 
-🎈 [프로젝트 회고록](https://velog.io/@ikosdu) 
+[github 블로그](https://sj0826.github.io/)로 글 이동중...
